@@ -23,6 +23,9 @@ public class PieceMoves {
         if (piece.getPieceType() == ChessPiece.PieceType.KNIGHT) {
             return new KnightMoves(board, myPosition).getKnightMoves();
         }
+        if (piece.getPieceType() == ChessPiece.PieceType.ROOK) {
+            return new RookMoves(board, myPosition).getRookMoves();
+        }
         return null;
     }
 }
