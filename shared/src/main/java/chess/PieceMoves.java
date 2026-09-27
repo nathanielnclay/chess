@@ -17,8 +17,8 @@ public class PieceMoves {
         if (piece.getPieceType() == ChessPiece.PieceType.KING) {
             return new KingMoves(board, myPosition).getKingMoves();
         }
-        if (piece.getPieceType() == ChessPiece.PieceType.BISHOP) {
-            return List.of(new ChessMove(new ChessPosition(5,4), new ChessPosition(1,8),null));
+        if (piece.getPieceType() == ChessPiece.PieceType.KNIGHT) {
+            return new KnightMoves(board, myPosition).getKnightMoves();
         }
         return null;
     }

@@ -84,7 +84,7 @@ public class ChessBoard {
     public boolean positionAvailable(ChessPosition position, ChessPiece piece) {
         int row = position.getRow() - 1;
         int col = position.getColumn() - 1;
-        if (row > 7 | row < 0 | col > 7 | row < 1) {return false;};
+        if (row > 7 | row < 0 | col > 7 | col < 0) {return false;};
         if (Board[row][col] == null) {return true;};
         if (piece.getTeamColor().equals(Board[row][col].getTeamColor())) {return  false;};
         return true;
@@ -93,7 +93,7 @@ public class ChessBoard {
     public boolean enemyPosition(ChessPosition position, ChessPiece piece) {
         int row = position.getRow() - 1;
         int col = position.getColumn() - 1;
-        if (row > 7 | row < 0 | col > 7 | row < 1) {return false;};
+        if (row > 7 | row < 0 | col > 7 | col < 0) {return false;};
         if (Board[row][col] == null) {return false;};
         if (piece.getTeamColor().equals(Board[row][col].getTeamColor())) {return  false;};
         return true;

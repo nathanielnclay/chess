@@ -18,7 +18,7 @@ public class KingMoves {
         ChessPiece piece = board.getPiece(myPosition);
         int[][] moves = {{1,1}, {1,-1}, {-1,1}, {-1,-1}, {1,0}, {0,1}, {-1,0}, {0,-1}};
         for (int[] move : moves){
-            ChessPosition moveTo = myPosition.positionAdd(move);
+            ChessPosition moveTo = myPosition.moveAdd(move);
             if (board.positionAvailable(moveTo, piece)){
                 possibleMoves.add(new ChessMove(myPosition, moveTo, null));
             }
