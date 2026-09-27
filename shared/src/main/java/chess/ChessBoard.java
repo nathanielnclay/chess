@@ -99,6 +99,14 @@ public class ChessBoard {
         return true;
     }
 
+    public boolean emptyspace(ChessPosition position) {
+        int row = position.getRow() - 1;
+        int col = position.getColumn() - 1;
+        if (row > 7 | row < 0 | col > 7 | col < 0) {return false;};
+        if (Board[row][col] == null) {return true;};
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) {
