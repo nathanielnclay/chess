@@ -17,7 +17,7 @@ public class QueenMoves {
     public Collection<ChessMove> getQueenMoves(){
         List<ChessMove> possibleMoves = new ArrayList<>();
         ChessPiece piece = board.getPiece(myPosition);
-        int[][] moves = {{1,1}, {1,-1}, {-1,1}, {-1,-1}};
+        int[][] moves = {{1,1}, {1,-1}, {-1,1}, {-1,-1}, {1,0}, {-1,0}, {0,1}, {0,-1}};
         for (int[] move : moves){
             ChessPosition currentPosition = myPosition;
             for (int i = 1; i <= 8; i++){
