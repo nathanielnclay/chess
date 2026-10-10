@@ -1,5 +1,7 @@
 package chess;
 
+// comment made will work on this later time spent thinking
+
 import java.util.Collection;
 
 /**
