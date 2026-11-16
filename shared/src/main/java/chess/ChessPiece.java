@@ -69,4 +69,25 @@ public class ChessPiece {
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
         return new PieceMoves(board, myPosition).getMoves();
     }
+
+    @Override
+    public String toString() {
+        if (pieceColor == ChessGame.TeamColor.WHITE){
+            if (type == ChessPiece.PieceType.KING) {return "K";}
+            if (type == ChessPiece.PieceType.QUEEN) {return "Q";}
+            if (type == ChessPiece.PieceType.BISHOP) {return "B";}
+            if (type == ChessPiece.PieceType.KNIGHT) {return "N";}
+            if (type == ChessPiece.PieceType.ROOK) {return "R";}
+            if (type == ChessPiece.PieceType.PAWN) {return "P";}
+        }
+        else {
+            if (type == ChessPiece.PieceType.KING) {return "k";}
+            if (type == ChessPiece.PieceType.QUEEN) {return "q";}
+            if (type == ChessPiece.PieceType.BISHOP) {return "b";}
+            if (type == ChessPiece.PieceType.KNIGHT) {return "n";}
+            if (type == ChessPiece.PieceType.ROOK) {return "r";}
+            if (type == ChessPiece.PieceType.PAWN) {return "p";}
+        }
+        return null;
+    }
 }

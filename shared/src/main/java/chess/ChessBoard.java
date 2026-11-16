@@ -120,4 +120,11 @@ public class ChessBoard {
     public int hashCode() {
         return Arrays.deepHashCode(Board);
     }
+
+    @Override
+    public String toString() {
+        return "ChessBoard{" +
+                "Board=" + Arrays.toString(Board) +
+                '}';
+    }
 }
