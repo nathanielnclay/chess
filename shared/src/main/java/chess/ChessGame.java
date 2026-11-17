@@ -94,9 +94,17 @@ public class ChessGame {
     public void movePiece(ChessMove move, ChessBoard board){
         ChessPosition start = move.getStartPosition();
         ChessPosition end = move.getEndPosition();
-        ChessPiece piece = board.getPiece(start);
+        TeamColor teamColor = board.getPiece(start).getTeamColor();
+        ChessPiece.PieceType pomote = move.getPromotionPiece();
+        if(pomote == null){
+            ChessPiece piece = board.getPiece(start);
+            board.addPiece(end, piece);
+        }
+        else {
+            ChessPiece piece = new ChessPiece(teamColor, pomote);
+            board.addPiece(end, piece);
+        }
         board.addPiece(start, null);
-        board.addPiece(end, piece);
     }
 
     /**
