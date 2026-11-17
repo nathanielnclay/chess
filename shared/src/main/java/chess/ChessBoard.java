@@ -3,7 +3,6 @@ package chess;
 import java.util.Arrays;
 import java.util.Objects;
 
-import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.copy;
 
 /**
  * A chessboard that can hold and rearrange chess pieces.
