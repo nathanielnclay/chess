@@ -84,6 +84,7 @@ public class ChessGame {
         for(ChessMove moveValid : movesValid){
             if(move.equals(moveValid)){
                 movePiece(move, Board);
+                turn += 1;
                 return;
             }
         }
