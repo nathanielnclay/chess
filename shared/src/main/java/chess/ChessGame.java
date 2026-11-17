@@ -2,7 +2,9 @@ package chess;
 
 // comment made will work on this later time spent thinking
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * A class that can manage a chess game, making moves on a board
@@ -11,10 +13,10 @@ import java.util.Collection;
  * signature of the existing methods.
  */
 public class ChessGame {
-    private ChessBoard board;
+    private ChessBoard Board;
     private int turn;
     public ChessGame() {
-        board = new ChessBoard();
+        Board = new ChessBoard();
         turn = 0;
     }
 
@@ -52,7 +54,17 @@ public class ChessGame {
      * startPosition
      */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
-        throw new RuntimeException("Not implemented");
+        TeamColor team = Board.getPiece(startPosition).getTeamColor();
+        Collection<ChessMove> moves = Board.getPiece(startPosition).pieceMoves(Board, startPosition);
+        List<ChessMove> movesValid = new ArrayList<>();
+        for (ChessMove move : moves){
+            ChessBoard copyBoard = Board.clone();
+            movePiece(move, copyBoard);
+            if(!checkCheck(team, copyBoard)){
+                movesValid.add(move);
+            }
+        }
+        return movesValid;
     }
 
     /**
@@ -62,7 +74,15 @@ public class ChessGame {
      * @throws InvalidMoveException if move is invalid
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
-        throw new RuntimeException("Not implemented");
+        movePiece(move, Board);
+    }
+
+    public void movePiece(ChessMove move, ChessBoard board){
+        ChessPosition start = move.getStartPosition();
+        ChessPosition end = move.getEndPosition();
+        ChessPiece piece = board.getPiece(start);
+        board.addPiece(start, null);
+        board.addPiece(end, piece);
     }
 
     /**
@@ -72,6 +92,10 @@ public class ChessGame {
      * @return True if the specified team is in check
      */
     public boolean isInCheck(TeamColor teamColor) {
+        return checkCheck(teamColor, Board);
+    }
+
+    public boolean checkCheck(TeamColor teamColor, ChessBoard board) {
         ChessPosition k_position = null;
         for (int row = 0; row < 8; row++){
             for (int col = 0; col < 8; col++){
@@ -130,7 +154,7 @@ public class ChessGame {
      *
      * @return the chessboard
      */
-    public ChessBoard getBoard() {return board;}
+    public ChessBoard getBoard() {return Board;}
 
 
     @Override
