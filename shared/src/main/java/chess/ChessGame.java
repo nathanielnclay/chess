@@ -77,6 +77,9 @@ public class ChessGame {
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
         ChessPosition startposition = move.getStartPosition();
+        ChessPiece piece = Board.getPiece(startposition);
+        if (piece == null){throw new InvalidMoveException("No piece here.");}
+        if (piece.getTeamColor() != getTeamTurn()){throw new InvalidMoveException("Not your turn");}
         Collection<ChessMove> movesValid = validMoves(startposition);
         for(ChessMove moveValid : movesValid){
             if(move.equals(moveValid)){
@@ -84,7 +87,7 @@ public class ChessGame {
                 return;
             }
         }
-        throw new InvalidMoveException("This move is not legal");
+        throw new InvalidMoveException("This move is not legal.");
     }
 
     public void movePiece(ChessMove move, ChessBoard board){
