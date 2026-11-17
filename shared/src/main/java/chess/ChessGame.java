@@ -99,21 +99,30 @@ public class ChessGame {
 
     public boolean checkCheck(TeamColor teamColor, ChessBoard board) {
         ChessPosition k_position = null;
+        kingloop:
         for (int row = 1; row <= 8; row++){
-            for (int col = 1; col <= 8; col++){
+            for (int col = 1; col <= 8; col++) {
                 k_position = new ChessPosition(row, col);
                 ChessPiece piece = board.getPiece(k_position);
-                if (piece.getPieceType() == ChessPiece.PieceType.KING && piece.getTeamColor() == teamColor){break;}
+                if (piece != null) {
+                    if (piece.getPieceType() == ChessPiece.PieceType.KING && piece.getTeamColor() == teamColor) {
+                        break kingloop;
+                    }
+                }
             }
         }
         for (int row = 1; row <= 8; row++){
             for (int col = 1; col <= 8; col++){
                 ChessPosition e_position = new ChessPosition(row, col);
                 ChessPiece piece = board.getPiece(e_position);
-                if (piece.getTeamColor() != teamColor){
-                    Collection<ChessMove> moves = piece.pieceMoves(board, e_position);
-                    for (ChessMove move : moves){
-                        if (move.getEndPosition().equals(k_position)){ return true;}
+                if (piece != null) {
+                    if (piece.getTeamColor() != teamColor) {
+                        Collection<ChessMove> moves = piece.pieceMoves(board, e_position);
+                        for (ChessMove move : moves) {
+                            if (move.getEndPosition().equals(k_position)) {
+                                return true;
+                            }
+                        }
                     }
                 }
             }
