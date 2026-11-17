@@ -18,6 +18,7 @@ public class ChessGame {
     private int turn;
     public ChessGame() {
         Board = new ChessBoard();
+        Board.resetBoard();
         turn = 0;
     }
 
