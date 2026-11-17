@@ -77,9 +77,7 @@ public class ChessGame {
             for (int col = 0; col < 8; col++){
                 k_position = new ChessPosition(row, col);
                 ChessPiece piece = board.getPiece(k_position);
-                if (piece.getPieceType() == ChessPiece.PieceType.KING && piece.getTeamColor() == teamColor){
-                    break;
-                }
+                if (piece.getPieceType() == ChessPiece.PieceType.KING && piece.getTeamColor() == teamColor){break;}
             }
         }
         for (int row = 0; row < 8; row++){

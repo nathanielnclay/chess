@@ -3,6 +3,8 @@ package chess;
 import java.util.Arrays;
 import java.util.Objects;
 
+import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.copy;
+
 /**
  * A chessboard that can hold and rearrange chess pieces.
  * <p>
@@ -126,5 +128,23 @@ public class ChessBoard {
         return "ChessBoard{" +
                 "Board=" + Arrays.toString(Board) +
                 '}';
+    }
+
+    @Override
+    public ChessBoard clone() {
+        try{
+            ChessBoard copy = (ChessBoard) super.clone();
+            ChessBoard copyBoard = new ChessBoard();
+            for (int row = 0; row < 8; row++) {
+                for (int col = 0; col < 8; col++) {
+                    ChessPosition position = new ChessPosition(row, col);
+                    ChessPiece copyPiece = copy.getPiece(position);
+                    copyBoard.addPiece(position, copyPiece);
+                }
+            }
+            return copyBoard;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
