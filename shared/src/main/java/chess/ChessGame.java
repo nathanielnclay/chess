@@ -99,15 +99,15 @@ public class ChessGame {
 
     public boolean checkCheck(TeamColor teamColor, ChessBoard board) {
         ChessPosition k_position = null;
-        for (int row = 0; row < 8; row++){
-            for (int col = 0; col < 8; col++){
+        for (int row = 1; row <= 8; row++){
+            for (int col = 1; col <= 8; col++){
                 k_position = new ChessPosition(row, col);
                 ChessPiece piece = board.getPiece(k_position);
                 if (piece.getPieceType() == ChessPiece.PieceType.KING && piece.getTeamColor() == teamColor){break;}
             }
         }
-        for (int row = 0; row < 8; row++){
-            for (int col = 0; col < 8; col++){
+        for (int row = 1; row <= 8; row++){
+            for (int col = 1; col <= 8; col++){
                 ChessPosition e_position = new ChessPosition(row, col);
                 ChessPiece piece = board.getPiece(e_position);
                 if (piece.getTeamColor() != teamColor){
@@ -145,8 +145,8 @@ public class ChessGame {
     }
 
     public boolean noValidMoves(TeamColor teamColor){
-        for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 8; col++) {
+        for (int row = 1; row <= 8; row++) {
+            for (int col = 1; col <= 8; col++) {
                 ChessPosition position = new ChessPosition(row, col);
                 ChessPiece piece = Board.getPiece(position);
                 if (piece.getTeamColor() == teamColor) {
@@ -163,7 +163,7 @@ public class ChessGame {
      * @param board the new board to use
      */
     public void setBoard(ChessBoard board) {
-        board.resetBoard();
+        Board = board;
     }
 
     /**

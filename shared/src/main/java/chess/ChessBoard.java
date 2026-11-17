@@ -1,6 +1,7 @@
 package chess;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
 
 
@@ -124,26 +125,29 @@ public class ChessBoard {
 
     @Override
     public String toString() {
-        return "ChessBoard{" +
-                "Board=" + Arrays.toString(Board) +
-                '}';
+        String boardstring = new String();
+        for (int row = 1; row <= 8; row++){
+            for (int col = 1; col <= 8; col++){
+                ChessPosition position = new ChessPosition(row, col);
+                ChessPiece piece = this.getPiece(position);
+                if(piece==null){boardstring += "| ";}
+                else {boardstring += ("|"+ piece.toString());}
+            }
+            boardstring += "|\n";
+        }
+        return boardstring;
     }
 
     @Override
     public ChessBoard clone() {
-        try{
-            ChessBoard copy = (ChessBoard) super.clone();
-            ChessBoard copyBoard = new ChessBoard();
-            for (int row = 0; row < 8; row++) {
-                for (int col = 0; col < 8; col++) {
-                    ChessPosition position = new ChessPosition(row, col);
-                    ChessPiece copyPiece = copy.getPiece(position);
-                    copyBoard.addPiece(position, copyPiece);
-                }
+        ChessBoard copyBoard = new ChessBoard();
+        for (int row = 1; row <= 8; row++) {
+            for (int col = 1; col <= 8; col++) {
+                ChessPosition position = new ChessPosition(row, col);
+                ChessPiece copyPiece = this.getPiece(position);
+                copyBoard.addPiece(position, copyPiece);
             }
-            return copyBoard;
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
         }
+        return copyBoard;
     }
 }
