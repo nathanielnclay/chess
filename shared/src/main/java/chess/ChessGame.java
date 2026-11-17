@@ -76,7 +76,15 @@ public class ChessGame {
      * @throws InvalidMoveException if move is invalid
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
-        movePiece(move, Board);
+        ChessPosition startposition = move.getStartPosition();
+        Collection<ChessMove> movesValid = validMoves(startposition);
+        for(ChessMove moveValid : movesValid){
+            if(move.equals(moveValid)){
+                movePiece(move, Board);
+                return;
+            }
+        }
+        throw new InvalidMoveException("This move is not legal");
     }
 
     public void movePiece(ChessMove move, ChessBoard board){
@@ -137,8 +145,7 @@ public class ChessGame {
      * @return True if the specified team is in checkmate
      */
     public boolean isInCheckmate(TeamColor teamColor) {
-        if(isInCheck(teamColor) && noValidMoves(teamColor)){return true;}
-        else {return false;}
+        return isInCheck(teamColor) && noValidMoves(teamColor);
     }
 
     /**
@@ -149,8 +156,7 @@ public class ChessGame {
      * @return True if the specified team is in stalemate, otherwise false
      */
     public boolean isInStalemate(TeamColor teamColor) {
-        if(!isInCheck(teamColor) && noValidMoves(teamColor)){return true;}
-        else {return false;}
+        return !isInCheck(teamColor) && noValidMoves(teamColor);
     }
 
     public boolean noValidMoves(TeamColor teamColor){
